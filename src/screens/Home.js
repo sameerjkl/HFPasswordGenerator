@@ -65,10 +65,12 @@ export default function Home() {
 
   return (
     <View style={styles.container}>
+       <Text style={styles.header}>Password Generator</Text> 
       <Text style={styles.passwordText}>{password}</Text>
+      {password && 
       <View style={styles.iconContainer}>
         <Icon name="copy" size={24} color="#000" onPress={copyToClipboard} />
-      </View>
+      </View>}
 
       <TextInput
         style={styles.input}
@@ -98,7 +100,7 @@ export default function Home() {
         <Switch value={includeLowerCase} onValueChange={setIncludeLowerCase} />
       </View>
       <View style={styles.switchContainer}>
-        <Text>Digits</Text>
+        <Text>Numbers</Text>
         <Switch value={includeNumbers} onValueChange={setIncludeNumbers} />
       </View>
       {/* <View style={styles.switchContainer}>
@@ -118,17 +120,19 @@ export default function Home() {
         selectedValue={prefixOrSuffix}
         onValueChange={(itemValue) => setPrefixOrSuffix(itemValue)}
       >
-        <Picker.Item label="None" value="" />
+        <Picker.Item label="Prefix/Suffix" value="" />
         <Picker.Item label="Prefix" value="prefix" />
         <Picker.Item label="Suffix" value="suffix" />
       </Picker>
 
-      <TextInput
-        style={styles.input}
-        onChangeText={(text) => setSpecificCharacter(text)}
-        value={specificCharacter}
-        placeholder={prefixOrSuffix}
-      />
+      {prefixOrSuffix && (
+        <TextInput
+          style={styles.input}
+          onChangeText={(text) => setSpecificCharacter(text)}
+          value={specificCharacter}
+          placeholder={"Enter " + prefixOrSuffix + " here"}
+        />
+      )}
       <Button title="Generate Password" onPress={generatePassword} />
       <StatusBar style="auto" />
     </View>
@@ -141,6 +145,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  header: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 20,
   },
   iconContainer: {
     padding: 5, // Adjust the padding as needed
