@@ -66,14 +66,9 @@ export default function Home() {
   return (
     <View style={styles.container}>
       <Text style={styles.passwordText}>{password}</Text>
-
-      <Button title="Copy to Clipboard" onPress={copyToClipboard} />
-      <Icon
-        name="copy" // Specify the icon name
-        size={24} // Adjust the size of the icon
-        color="#000" // Adjust the color of the icon
-        onPress={copyToClipboard} // Attach onPress event handler
-      />
+      <View style={styles.iconContainer}>
+        <Icon name="copy" size={24} color="#000" onPress={copyToClipboard} />
+      </View>
 
       <TextInput
         style={styles.input}
@@ -146,6 +141,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  iconContainer: {
+    padding: 5, // Adjust the padding as needed
   },
   input: {
     height: 50,
